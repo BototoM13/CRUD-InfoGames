@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Info Games</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">  
+  </head>
+
+  <body>
+    <h1><i class="material-symbols-outlined">joystick</i> Info Games </h1>
+    <div id="buttons">
+      <button data-action="init" class="btn-init"><i class="material-symbols-outlined">play_arrow</i> Iniciar Biblioteca</button>
+      <button data-action="listar" class="btn-listar"><i class="material-symbols-outlined">list_alt</i> Listar Jogos</button>
+      <button data-action="adicionar" class="btn-add"><i class="material-symbols-outlined">add</i> Adicionar novo Jogo</button>
+      <button data-action="atualizar" class="btn-att"> <i class="material-symbols-outlined">update</i> Atualizar Copias </button>
+      <button data-action="remover" class="btn-remover"><i class="material-symbols-outlined">delete</i> Remover Jogo</button>
+      <button data-action="listarGenero" class="btn-listGen"><i class="material-symbols-outlined">format_list_bulleted</i> Listar por Gênero</button>
+      <button data-action="listarPerspectiva" class="btn-listPerspectiva"><i class="material-symbols-outlined">format_list_bulleted</i> Listar por Perspectiva</button>
+      <button data-action="pesquisaJogo" class="btn-searchGame"><i class="material-symbols-outlined">manage_search</i> Pesquisar Jogo</button>
+      <button data-action="aleatorio" class="btn-randomGame"><i class="material-symbols-outlined">shuffle</i> Jogo Aleatório</button>
+      <button data-action="graficoVendas" class="btn-grafVendas"><i class="material-symbols-outlined">bar_chart</i> Gráfico de Vendas</button>
+    </div>
+    <!-- Aqui será exibido dinamicamente o formulário de cada ação (por exemplo, adicionar livro) -->
+    <div id="forms"></div>
+
+    <!-- Área para mostrar resultados (exemplo: lista de livros cadastrados) -->
+    <div id="output"></div>
+
+    <!--Biblioteca Charts.js para o grafico
+      -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <= ADD ESSA AQUI TBM-->
+
+    <script type="module" src="ui.js"></script>
+  </body>
+</html>
