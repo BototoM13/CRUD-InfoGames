@@ -10,13 +10,6 @@ const salvarJogos = (lista) => {
 const carregarJogos = () => {
   return localStorage.getItem(STORAGE_KEY) ? JSON.parse(localStorage.getItem(STORAGE_KEY)) : []
 }
-
-// remove os jogos do local storage
-const removerJogos = () => {
-  localStorage.removeItem(STORAGE_KEY)
-  console.log("Biblioteca de jogos limpa.")
-}
-
 //restaura a lista de jogos para a inicial
 const resetarJogos = () => {
 const jogos = [
@@ -362,7 +355,7 @@ const apagarJogos = (jogos, nome) =>
 
 
 // Lista Jogos
-const listarJogos = jogos => jogos.map(jogo => `${jogo.Nome} — ${jogo.Copias} cópias — ${jogo.Desenvolvedora}`).join("<br>");
+const listarJogos = jogos => jogos.map(jogo => `${jogo.Nome} — ${jogo.Copias} cópias — ${jogo.Desenvolvedora}`).join("<br>")
 
 // Lista os jogos por genero
 
@@ -371,10 +364,10 @@ const filtroGenero = jogos.filter(jogo => jogo.Genero.toLowerCase() === genero.t
   return filtroGenero.map(jogo => `${jogo.Nome} — ${jogo.Copias} cópias — ${jogo.Desenvolvedora}`).join("<br>")}
 
 const filtrarTodosGeneros = ([x, ...xs]) => {
-  if (x === undefined) return [];
+  if (x === undefined) return []
   else {
-    const filtro = xs.filter(per => per.Genero.toLowerCase() !== x.Genero.toLowerCase());
-    return [x.Genero, ...filtrarTodosGeneros(filtro)];
+    const filtro = xs.filter(per => per.Genero.toLowerCase() !== x.Genero.toLowerCase())
+    return [x.Genero, ...filtrarTodosGeneros(filtro)]
   }
 }
 
@@ -392,10 +385,10 @@ const filtrarperspectiva = (lista, perspectiva) => {
 }
 
 const filtrartodasperspectivas = ([x, ...xs]) => {
-  if (x === undefined) return [];
+  if (x === undefined) return []
   else {
-    const filtro = xs.filter(per => per.Perspectiva.toLowerCase() !== x.Perspectiva.toLowerCase());
-    return [x.Perspectiva, ...filtrartodasperspectivas(filtro)];
+    const filtro = xs.filter(per => per.Perspectiva.toLowerCase() !== x.Perspectiva.toLowerCase())
+    return [x.Perspectiva, ...filtrartodasperspectivas(filtro)]
   }
 }
 
@@ -404,42 +397,42 @@ const filtrartodasperspectivas = ([x, ...xs]) => {
 
 // API RAWG
 const buscarJogoRAWG = async (nome) => {
-  const apiKey = "1ccec18c13bb4f04a50b3b5c385ad52d"; 
-  const url = `https://api.rawg.io/api/games?key=${apiKey}&search=${nome}`;
+  const apiKey = "1ccec18c13bb4f04a50b3b5c385ad52d"
+  const url = `https://api.rawg.io/api/games?key=${apiKey}&search=${nome}`
   
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await fetch(url)
+    const data = await response.json()
     return data.results;
   } catch (error) {
-    console.error("Erro ao buscar jogo:", error);
-    return [];
+    console.error("Erro ao buscar jogo:", error)
+    return []
   }
-};
+}
 
 const buscarDetalhesRAWG = async (id) => {
-  const apiKey = "1ccec18c13bb4f04a50b3b5c385ad52d";
-  const url = `https://api.rawg.io/api/games/${id}?key=${apiKey}`;
+  const apiKey = "1ccec18c13bb4f04a50b3b5c385ad52d"
+  const url = `https://api.rawg.io/api/games/${id}?key=${apiKey}`
   
   try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
   } catch (error) {
-    console.error("Erro ao buscar detalhes do jogo:", error);
-    return null;
+    console.error("Erro ao buscar detalhes do jogo:", error)
+    return null
   }
-};
+}
 
 
 
 
 // Pega um jogo aleatorio
 const jogoAleatorio = (lista) => {
-  if (lista.length === 0) return undefined;
-  const random_game = Math.floor(Math.random() * lista.length);
-  return lista[random_game];
-};
+  if (lista.length === 0) return undefined
+  const random_game = Math.floor(Math.random() * lista.length)
+  return lista[random_game]
+}
 
 
 
