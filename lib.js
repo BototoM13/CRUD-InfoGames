@@ -438,7 +438,7 @@ const jogoAleatorio = (lista) => {
 
 
 export const Jogos ={
-  carregarJogos, removerJogos, resetarJogos, salvarJogos,
+  carregarJogos, resetarJogos, salvarJogos,
   //CRUD
   adicionarJogos, atualizarJogos, apagarJogos,
   // Listar
