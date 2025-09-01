@@ -10,6 +10,13 @@ const salvarJogos = (lista) => {
 const carregarJogos = () => {
   return localStorage.getItem(STORAGE_KEY) ? JSON.parse(localStorage.getItem(STORAGE_KEY)) : []
 }
+
+// remove os jogos do local storage
+const removerJogos = () => {
+  localStorage.removeItem(STORAGE_KEY)
+  console.log("Biblioteca de jogos limpa.")
+}
+
 //restaura a lista de jogos para a inicial
 const resetarJogos = () => {
 const jogos = [
@@ -358,20 +365,20 @@ const apagarJogos = (jogos, nome) =>
 const listarJogos = jogos => jogos.map(jogo => `${jogo.Nome} — ${jogo.Copias} cópias — ${jogo.Desenvolvedora}`).join("<br>")
 
 // Lista os jogos por genero
-
 const listarJogosPorGenero = (jogos, genero) => {
 const filtroGenero = jogos.filter(jogo => jogo.Genero.toLowerCase() === genero.toLowerCase())
   return filtroGenero.map(jogo => `${jogo.Nome} — ${jogo.Copias} cópias — ${jogo.Desenvolvedora}`).join("<br>")}
 
+//Gera uma lista com todos os generos para colocar no select 
 const filtrarTodosGeneros = ([x, ...xs]) => {
-  if (x === undefined) return []
+  if (x === undefined) return [];
   else {
     const filtro = xs.filter(per => per.Genero.toLowerCase() !== x.Genero.toLowerCase())
     return [x.Genero, ...filtrarTodosGeneros(filtro)]
   }
 }
 
-// Mostra tudo do Jogo, menos tolerante 
+// Mostra tudo do Jogo
 const listarTudoJogo = (jogos, nome) => {
 const tolerancia = nome.trim().toLowerCase()
 const filtroNome = jogos.filter(jogo => jogo.Nome.toLowerCase().includes(tolerancia))
@@ -384,6 +391,7 @@ const filtrarperspectiva = (lista, perspectiva) => {
   return filtro.map((jogo) => `${jogo.Nome}`).join("<br>") //GUSTAVO mudei p n mostrar mais a perspectiva
 }
 
+//Gera uma nova lista com as perspectivas para colocar no select
 const filtrartodasperspectivas = ([x, ...xs]) => {
   if (x === undefined) return []
   else {
@@ -393,22 +401,20 @@ const filtrartodasperspectivas = ([x, ...xs]) => {
 }
 
 
-// ... (código existente)
-
 // API RAWG
 const buscarJogoRAWG = async (nome) => {
-  const apiKey = "1ccec18c13bb4f04a50b3b5c385ad52d"
+  const apiKey = "1ccec18c13bb4f04a50b3b5c385ad52d"; 
   const url = `https://api.rawg.io/api/games?key=${apiKey}&search=${nome}`
   
   try {
     const response = await fetch(url)
     const data = await response.json()
-    return data.results;
+    return data.results
   } catch (error) {
     console.error("Erro ao buscar jogo:", error)
     return []
   }
-}
+};
 
 const buscarDetalhesRAWG = async (id) => {
   const apiKey = "1ccec18c13bb4f04a50b3b5c385ad52d"
@@ -425,9 +431,7 @@ const buscarDetalhesRAWG = async (id) => {
 }
 
 
-
-
-// Pega um jogo aleatorio
+// Gera um jogo aleatorio
 const jogoAleatorio = (lista) => {
   if (lista.length === 0) return undefined
   const random_game = Math.floor(Math.random() * lista.length)
@@ -438,7 +442,7 @@ const jogoAleatorio = (lista) => {
 
 
 export const Jogos ={
-  carregarJogos, resetarJogos, salvarJogos,
+  carregarJogos, removerJogos, resetarJogos, salvarJogos,
   //CRUD
   adicionarJogos, atualizarJogos, apagarJogos,
   // Listar
